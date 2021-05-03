@@ -141,22 +141,71 @@ public class FXMLDocumentController implements Initializable {
             data = Float.parseFloat(display.getText());
             operation = 4; //Division
             display.setText("");
+        } else if (event.getSource() == back) {
+            data = Float.parseFloat(display.getText());
+            operation = 5; //Back
+            display.setText("");
+        } else if (event.getSource() == mod) {
+            data = Float.parseFloat(display.getText());
+            operation = 6; //Mod
+            display.setText("");
+        } else if (event.getSource() == signo) {
+            data = Float.parseFloat(display.getText());
+            operation = 7; //Signo
+            display.setText("");
+        } else if (event.getSource() == coma) {
+            data = Float.parseFloat(display.getText());
+            operation = 8; //Coma
+            display.setText("");
+        }else if (event.getSource() == tenPow) {
+            data = Float.parseFloat(display.getText());
+            operation = 9; //Potencia
+            display.setText("");
+        } else if (event.getSource() == sqrt) {
+            data = Float.parseFloat(display.getText());
+            operation = 10; //Raiz
+            display.setText("");
+        } else if (event.getSource() == nFact) {
+            data = Float.parseFloat(display.getText());
+            operation = 11; //Factorial
+            display.setText("");
+        } else if (event.getSource() == log) {
+            data = Float.parseFloat(display.getText());
+            operation = 12; //Logaritmo
+            display.setText("");
         }
         else if (event.getSource() == equals) {
-            float secondOperand = Float.parseFloat(display.getText());
+ 
             switch (operation) {
                 case 1: //Addition
+                    float secondOperand = Float.parseFloat(display.getText());
                     float ans = Calculadora.add(data, secondOperand);
                     display.setText(String.valueOf(ans));break;
                 case 2: //Subtraction
+                    secondOperand = Float.parseFloat(display.getText());
                     ans = Calculadora.substract(data, secondOperand);
                     display.setText(String.valueOf(ans));break;
                 case 3: //Mul
+                    secondOperand = Float.parseFloat(display.getText());
                     ans = Calculadora.multiply(data, secondOperand);
                     display.setText(String.valueOf(ans));break;
                 case 4: //Div
+                    secondOperand = Float.parseFloat(display.getText());
                     ans = 0f;
                     ans = Calculadora.div(data, secondOperand);                    
+                    display.setText(String.valueOf(ans));break;
+                case 6: //Mod
+                    secondOperand = Float.parseFloat(display.getText());
+                    ans = Calculadora.mod(data, secondOperand);
+                    display.setText(String.valueOf(ans));break;
+                case 9: //Potencia
+                    ans = Calculadora.power(data);
+                    display.setText(String.valueOf(ans));break;
+                case 10: //Raiz
+                    ans = Calculadora.square(data);
+                    display.setText(String.valueOf(ans));break;
+                case 11: //Factorial
+                    ans = Calculadora.fact(data);
                     display.setText(String.valueOf(ans));break;
             }
         }
