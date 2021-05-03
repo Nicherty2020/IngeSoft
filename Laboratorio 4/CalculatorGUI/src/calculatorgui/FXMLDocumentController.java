@@ -207,6 +207,9 @@ public class FXMLDocumentController implements Initializable {
                 case 11: //Factorial
                     ans = Calculadora.fact(data);
                     display.setText(String.valueOf(ans));break;
+                case 12: //Logaritmo
+                    ans = Calculadora.log(data);
+                    display.setText(data+" "+String.valueOf(ans));break;
             }
         }
     }

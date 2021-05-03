@@ -43,7 +43,6 @@ public class Calculadora {
     
     public static float power(float a)
     {
-        
         return (float) Math.pow(10, a);
     }
     
@@ -54,5 +53,10 @@ public class Calculadora {
             result = result * i;
         }
         return result;
+    }
+    
+    public static float log(float a)
+    {
+        return (float) Math.log10(a);
     }
 }
