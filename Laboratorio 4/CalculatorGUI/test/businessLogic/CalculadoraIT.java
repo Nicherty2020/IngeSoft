@@ -210,7 +210,15 @@ public class CalculadoraIT {
         float b = -20F;
         float expResult = -3F;
         float result = Calculadora.div(a, b);
-        assertEquals(expResult, result, 0.0);   
+        assertEquals(expResult, result, 0.0);  
+    }
+    @Test
+    public void testLog() {
+        System.out.println("logarithmic ");
+        float a = 4F;
+        float expResult = 0.60206F;
+        float result = Calculadora.log(a);
+        assertEquals(expResult, result, 0.0);  
     }   
     
 }
