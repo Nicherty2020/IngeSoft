@@ -20,10 +20,10 @@ import javafx.scene.control.TextField;
  * @author Anabel
  */
 public class FXMLDocumentController implements Initializable {
-    
+
     private float data;
     private int operation = -1;
-    
+
     @FXML
     private Button one;
 
@@ -71,7 +71,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button div;
-    
+
     @FXML
     private Button back;
 
@@ -96,10 +96,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button log;
 
-
     @FXML
     private TextField display;
-    
+
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == one) {
@@ -124,8 +123,7 @@ public class FXMLDocumentController implements Initializable {
             display.setText(display.getText() + "0");
         } else if (event.getSource() == clear) {
             display.setText("");
-        }
-        else if (event.getSource() == plus) {
+        } else if (event.getSource() == plus) {
             data = Float.parseFloat(display.getText());
             operation = 1; //Addition
             display.setText("");
@@ -142,81 +140,79 @@ public class FXMLDocumentController implements Initializable {
             operation = 4; //Division
             display.setText("");
         } else if (event.getSource() == back) {
-            data = Float.parseFloat(display.getText());
-            operation = 5; //Back
-            display.setText("");
+            String dato = display.getText();
+            if (!dato.isEmpty()) {
+                dato = display.getText().substring(0, display.getText().length() - 1);
+            }
+            display.setText(dato);
         } else if (event.getSource() == mod) {
             data = Float.parseFloat(display.getText());
-            operation = 6; //Mod
+            operation = 5; //Mod
             display.setText("");
-        } else if (event.getSource() == signo) {
+        } else if (event.getSource() == signo) {  //signo
+            if (operation == 1 || operation == 2 || operation == 3 || operation == 4 || operation == 6) {
+                float data2 = 0;
+                data2 = Float.parseFloat(display.getText());
+                data2 = Calculadora.signo(data2);
+                display.setText(String.valueOf(data2));
+            }else{
+                data = Float.parseFloat(display.getText());
+                data = Calculadora.signo(data);
+                display.setText(String.valueOf(data));
+            }
+        } else if (event.getSource() == coma) { //coma
+            String dato = display.getText();
+            if (!dato.contains(".")) {
+                display.setText(display.getText() + ".");
+            }
+        } else if (event.getSource() == tenPow) { //potencia
             data = Float.parseFloat(display.getText());
-            operation = 7; //Signo
-            display.setText("");
-        } else if (event.getSource() == coma) {
+            data = Calculadora.power(data);
+            display.setText(String.valueOf(data));
+        } else if (event.getSource() == sqrt) {  //raiz
             data = Float.parseFloat(display.getText());
-            operation = 8; //Coma
-            display.setText("");
-        }else if (event.getSource() == tenPow) {
+            data = Calculadora.square(data);
+            display.setText(String.valueOf(data));
+        } else if (event.getSource() == nFact) { //factorial
             data = Float.parseFloat(display.getText());
-            operation = 9; //Potencia
-            display.setText("");
-        } else if (event.getSource() == sqrt) {
+            data = Calculadora.fact(data);
+            display.setText(String.valueOf(data));
+        } else if (event.getSource() == log) { //logaritmo
             data = Float.parseFloat(display.getText());
-            operation = 10; //Raiz
-            display.setText("");
-        } else if (event.getSource() == nFact) {
-            data = Float.parseFloat(display.getText());
-            operation = 11; //Factorial
-            display.setText("");
-        } else if (event.getSource() == log) {
-            data = Float.parseFloat(display.getText());
-            operation = 12; //Logaritmo
-            display.setText("");
-        }
-        else if (event.getSource() == equals) {
- 
+            data = Calculadora.log(data);
+            display.setText(String.valueOf(data));
+        } else if (event.getSource() == equals) {
+            float secondOperand = Float.parseFloat(display.getText());
             switch (operation) {
                 case 1: //Addition
-                    float secondOperand = Float.parseFloat(display.getText());
                     float ans = Calculadora.add(data, secondOperand);
-                    display.setText(String.valueOf(ans));break;
+                    display.setText(String.valueOf(ans));
+                    break;
                 case 2: //Subtraction
-                    secondOperand = Float.parseFloat(display.getText());
                     ans = Calculadora.substract(data, secondOperand);
-                    display.setText(String.valueOf(ans));break;
+                    display.setText(String.valueOf(ans));
+                    break;
                 case 3: //Mul
-                    secondOperand = Float.parseFloat(display.getText());
                     ans = Calculadora.multiply(data, secondOperand);
-                    display.setText(String.valueOf(ans));break;
+                    display.setText(String.valueOf(ans));
+                    break;
                 case 4: //Div
-                    secondOperand = Float.parseFloat(display.getText());
                     ans = 0f;
-                    ans = Calculadora.div(data, secondOperand);                    
-                    display.setText(String.valueOf(ans));break;
-                case 6: //Mod
-                    secondOperand = Float.parseFloat(display.getText());
+                    ans = Calculadora.div(data, secondOperand);
+                    display.setText(String.valueOf(ans));
+                    break;
+                case 5: //Mod
                     ans = Calculadora.mod(data, secondOperand);
-                    display.setText(String.valueOf(ans));break;
-                case 9: //Potencia
-                    ans = Calculadora.power(data);
-                    display.setText(String.valueOf(ans));break;
-                case 10: //Raiz
-                    ans = Calculadora.square(data);
-                    display.setText(String.valueOf(ans));break;
-                case 11: //Factorial
-                    ans = Calculadora.fact(data);
-                    display.setText(String.valueOf(ans));break;
-                case 12: //Logaritmo
-                    ans = Calculadora.log(data);
-                    display.setText(data+" "+String.valueOf(ans));break;
+                    display.setText(String.valueOf(ans));
+                    break;
             }
+            operation = 0;
         }
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }

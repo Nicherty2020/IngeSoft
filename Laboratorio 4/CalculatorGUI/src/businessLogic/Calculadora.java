@@ -59,4 +59,8 @@ public class Calculadora {
     {
         return (float) Math.log10(a);
     }
+    public static float signo (float a)
+    {
+        return a * -1;
+    }
 }
