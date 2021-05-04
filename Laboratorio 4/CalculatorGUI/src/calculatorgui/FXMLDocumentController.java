@@ -23,6 +23,7 @@ public class FXMLDocumentController implements Initializable {
 
     private float data;
     private int operation = -1;
+    private float secondOperand ;
 
     @FXML
     private Button one;
@@ -123,33 +124,33 @@ public class FXMLDocumentController implements Initializable {
             display.setText(display.getText() + "0");
         } else if (event.getSource() == clear) {
             display.setText("");
-        } else if (event.getSource() == plus) {
+        } else if (event.getSource() == plus && !display.getText().isEmpty()) {
             data = Float.parseFloat(display.getText());
             operation = 1; //Addition
             display.setText("");
-        } else if (event.getSource() == minus) {
+        } else if (event.getSource() == minus && !display.getText().isEmpty()) {
             data = Float.parseFloat(display.getText());
             operation = 2; //Substraction
             display.setText("");
-        } else if (event.getSource() == mult) {
+        } else if (event.getSource() == mult && !display.getText().isEmpty()) {
             data = Float.parseFloat(display.getText());
             operation = 3; //Mul
             display.setText("");
-        } else if (event.getSource() == div) {
+        } else if (event.getSource() == div && !display.getText().isEmpty()) {
             data = Float.parseFloat(display.getText());
             operation = 4; //Division
             display.setText("");
-        } else if (event.getSource() == back) {
+        } else if (event.getSource() == back) {//back
             String dato = display.getText();
             if (!dato.isEmpty()) {
                 dato = display.getText().substring(0, display.getText().length() - 1);
             }
             display.setText(dato);
-        } else if (event.getSource() == mod) {
+        } else if (event.getSource() == mod && !display.getText().isEmpty()) {
             data = Float.parseFloat(display.getText());
             operation = 5; //Mod
             display.setText("");
-        } else if (event.getSource() == signo) {  //signo
+        } else if (event.getSource() == signo && !display.getText().isEmpty()) {  //signo
             if (operation == 1 || operation == 2 || operation == 3 || operation == 4 || operation == 6) {
                 float data2 = 0;
                 data2 = Float.parseFloat(display.getText());
@@ -160,29 +161,29 @@ public class FXMLDocumentController implements Initializable {
                 data = Calculadora.signo(data);
                 display.setText(String.valueOf(data));
             }
-        } else if (event.getSource() == coma) { //coma
+        } else if (event.getSource() == coma ) { //coma
             String dato = display.getText();
             if (!dato.contains(".")) {
                 display.setText(display.getText() + ".");
             }
-        } else if (event.getSource() == tenPow) { //potencia
+        } else if (event.getSource() == tenPow && !display.getText().isEmpty()) { //potencia
             data = Float.parseFloat(display.getText());
             data = Calculadora.power(data);
             display.setText(String.valueOf(data));
-        } else if (event.getSource() == sqrt) {  //raiz
+        } else if (event.getSource() == sqrt && !display.getText().isEmpty()) {  //raiz
             data = Float.parseFloat(display.getText());
             data = Calculadora.square(data);
             display.setText(String.valueOf(data));
-        } else if (event.getSource() == nFact) { //factorial
+        } else if (event.getSource() == nFact && !display.getText().isEmpty()) { //factorial
             data = Float.parseFloat(display.getText());
             data = Calculadora.fact(data);
             display.setText(String.valueOf(data));
-        } else if (event.getSource() == log) { //logaritmo
+        } else if (event.getSource() == log && !display.getText().isEmpty()) { //logaritmo
             data = Float.parseFloat(display.getText());
             data = Calculadora.log(data);
             display.setText(String.valueOf(data));
         } else if (event.getSource() == equals) {
-            float secondOperand = Float.parseFloat(display.getText());
+            secondOperand = Float.parseFloat(display.getText());
             switch (operation) {
                 case 1: //Addition
                     float ans = Calculadora.add(data, secondOperand);
