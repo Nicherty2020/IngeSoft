@@ -23,7 +23,7 @@ public class FXMLDocumentController implements Initializable {
 
     private float data;
     private int operation = -1;
-    private float secondOperand ;
+    private float secondOperand;
 
     @FXML
     private Button one;
@@ -142,6 +142,7 @@ public class FXMLDocumentController implements Initializable {
             display.setText("");
         } else if (event.getSource() == back) {//back
             String dato = display.getText();
+
             if (!dato.isEmpty()) {
                 dato = display.getText().substring(0, display.getText().length() - 1);
             }
@@ -151,17 +152,17 @@ public class FXMLDocumentController implements Initializable {
             operation = 5; //Mod
             display.setText("");
         } else if (event.getSource() == signo && !display.getText().isEmpty()) {  //signo
-            if (operation == 1 || operation == 2 || operation == 3 || operation == 4 || operation == 6) {
+            if (operation == 1 || operation == 2 || operation == 3 || operation == 4 || operation == 5) {
                 float data2 = 0;
                 data2 = Float.parseFloat(display.getText());
                 data2 = Calculadora.signo(data2);
                 display.setText(String.valueOf(data2));
-            }else{
+            } else {
                 data = Float.parseFloat(display.getText());
                 data = Calculadora.signo(data);
                 display.setText(String.valueOf(data));
             }
-        } else if (event.getSource() == coma ) { //coma
+        } else if (event.getSource() == coma) { //coma
             String dato = display.getText();
             if (!dato.contains(".")) {
                 display.setText(display.getText() + ".");
